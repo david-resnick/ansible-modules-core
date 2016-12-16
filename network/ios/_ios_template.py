@@ -15,6 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with Ansible.  If not, see <http://www.gnu.org/licenses/>.
 #
+ANSIBLE_METADATA = {'status': ['deprecated'],
+                    'supported_by': 'community',
+                    'version': '1.0'}
+
+
 DOCUMENTATION = """
 ---
 module: ios_template
@@ -94,7 +99,7 @@ EXAMPLES = """
     src: config.j2
     force: yes
 
-- name: provide the base configuration for comparision
+- name: provide the base configuration for comparison
   ios_template:
     host: hostname
     username: foo

@@ -16,6 +16,10 @@
 # along with Ansible.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+ANSIBLE_METADATA = {'status': ['preview'],
+                    'supported_by': 'core',
+                    'version': '1.0'}
+
 DOCUMENTATION = """
 ---
 module: junos_config
@@ -214,7 +218,7 @@ def diff_commands(commands, config):
     updates = list()
     visited = set()
 
-    for item in commands.split('\n'):
+    for item in commands:
         if len(item) > 0:
             if not item.startswith('set') and not item.startswith('delete'):
                 raise ValueError('line must start with either `set` or `delete`')
@@ -232,6 +236,8 @@ def diff_commands(commands, config):
 
 def load_config(module, result):
     candidate =  module.params['lines'] or module.params['src']
+    if isinstance(candidate, basestring):
+        candidate = candidate.split('\n')
 
     kwargs = dict()
     kwargs['comment'] = module.params['comment']
@@ -240,7 +246,7 @@ def load_config(module, result):
     kwargs['commit'] = not module.check_mode
 
     if module.params['src']:
-        config_format = module.params['src_format'] or guess_format(candidate)
+        config_format = module.params['src_format'] or guess_format(str(candidate))
     elif module.params['lines']:
         config_format = 'set'
     kwargs['config_format'] = config_format

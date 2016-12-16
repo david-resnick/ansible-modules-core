@@ -16,6 +16,10 @@
 # along with Ansible.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+ANSIBLE_METADATA = {'status': ['preview'],
+                    'supported_by': 'community',
+                    'version': '1.0'}
+
 DOCUMENTATION = '''
 ---
 module: nxos_bgp_neighbor_af
@@ -50,7 +54,7 @@ options:
         required: true
     afi:
         description:
-            - Address Family Identifie.
+            - Address Family Identifier.
         required: true
         choices: ['ipv4','ipv6', 'vpnv4', 'vpnv6', 'l2vpn']
     safi:

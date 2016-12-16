@@ -16,6 +16,10 @@
 # along with Ansible.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+ANSIBLE_METADATA = {'status': ['preview'],
+                    'supported_by': 'community',
+                    'version': '1.0'}
+
 DOCUMENTATION = """
 ---
 module: nxos_facts
@@ -100,7 +104,7 @@ ansible_net_image:
 
 # hardware
 ansible_net_filesystems:
-  description: All file system names availabe on the device
+  description: All file system names available on the device
   returned: when hardware is configured
   type: list
 ansible_net_memfree_mb:
